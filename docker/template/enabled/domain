@@ -1,10 +1,10 @@
 server {
   listen 80;
-  server_name example.com;
+  server_name {domain}
 
   location / {
     include /etc/nginx/includes/proxy.conf;
-    proxy_pass http://example_com;
+    proxy_pass http://{network};
   }
 
   access_log off;

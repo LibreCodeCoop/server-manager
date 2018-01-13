@@ -1,15 +1,15 @@
 version: '3'
 
 networks:
-  example_com:
+  {network}: # don't change
     driver: bridge
 
 services:
   app:
     image: nginx:1.12
-    container_name: example_com_app
+    container_name: {network} # don't change
     networks:
-      - example_com
+      - {network} # don't change
     volumes:
       - .:/usr/share/nginx/html/
     expose:

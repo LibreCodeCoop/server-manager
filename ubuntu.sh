@@ -65,7 +65,6 @@ if [ "$EXISTS" = '0' ]; then
   cp $DIR/._bash /home/$INSTALL_USER/._bash
   printf '\n%s\n' 'source ._bash' >> /home/$INSTALL_USER/.bashrc
   cp -R $DIR/docker /home/$INSTALL_USER/docker
-  cp -R $DIR/example.com /home/$INSTALL_USER/example.com
   chmod 755 /home/$INSTALL_USER/.ssh/authorized_keys
   chown -R $INSTALL_USER:$INSTALL_USER /home/$INSTALL_USER
 fi

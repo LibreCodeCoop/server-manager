@@ -3,7 +3,7 @@ version: '3'
 networks:
   example_com_proxy:
     external:
-      name: example_com
+      name: app_example_com
 
 services:
   proxy:
