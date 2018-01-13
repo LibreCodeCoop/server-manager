@@ -1,8 +1,3 @@
 #!/bin/bash
 
-DIR=$(dirname "$0")
-SITE=$1
-
-cd $DIR/$SITE/app
-
-docker-compose down
+docker-compose down --workdir="${1}/${2}/app"

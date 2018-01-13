@@ -1,10 +1,10 @@
 server {
   listen 80;
-  server_name {domain}
+  server_name <?php echo $domain; ?>
 
   location / {
     include /etc/nginx/includes/proxy.conf;
-    proxy_pass http://{network};
+    proxy_pass http://<?php echo $network; ?>;
   }
 
   access_log off;

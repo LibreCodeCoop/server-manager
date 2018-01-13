@@ -1,15 +1,15 @@
 version: '3'
 
 networks:
-  {network}: # don't change
+  <?php echo $network; ?>: # don't change
     driver: bridge
 
 services:
   app:
     image: nginx:1.12
-    container_name: {network} # don't change
+    container_name: <?php echo $network; ?> # don't change
     networks:
-      - {network} # don't change
+      - <?php echo $network; ?> # don't change
     volumes:
       - .:/usr/share/nginx/html/
     expose:
