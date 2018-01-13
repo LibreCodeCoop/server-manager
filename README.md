@@ -39,12 +39,16 @@ And then you can run the installer like the command above or before execute it r
 # installer/ubuntu.sh <user> <version> <compose> <reboot> <locale>
 ```
 
-- 1. The name of user what will be used to access the server. Can be `sysadmin` or whatever you want. The user what you use to install will be used to next access and root will not access using ssh key anymore;
 
-- 2. [optional] This parameter is the version of docker what will you install. Reproduce the same version of your staging ou test environment. To aplly any version use `edge` or don't inform;
+Parameters spec:
 
-- 3. [optional] Version of docker-compose. If you use `edge` or don't inform the latest version released will be used;
+1. `<user>` The name of user what will be used to access the server. Can be `sysadmin` or whatever you want. The user what you use to install will be used to next access and root will not access using ssh key anymore;
 
-- 4. [optional] Flag for system reboot. If don't informed will be yes;
+2. `<version>` [optional] This parameter is the version of docker what will you install. Reproduce the same version of your staging ou test environment. To aplly any version use `edge` or don't inform;
 
-- 5. [optional] Fix locales of Ubuntu Server. If don't informed will be yes.
+3. `<compose>` [optional] Version of docker-compose. If you use `edge` or don't inform the latest version released will be used;
+
+4. `<reboot>` [optional] Flag for system reboot. If don't informed will be yes;
+
+5. `<locale>` [optional] Fix locales of Ubuntu Server. If don't informed will be yes.
+
