@@ -26,17 +26,17 @@ To proceed to update password of root do
 ### Install and configure docker and a limited user
 Still with root, download this project
 ```
-# git clone https://github.com/LyseonTech/ubuntu-server-start.git installer
+# git clone https://github.com/LyseonTech/server-start.git installer
 ```
 
 And then you can run the installer like the command above or before execute it read the next topic
 ```
-# installer/run.sh 17.12.0~ce-0~ubuntu heimdall yes yes
+# installer/ubuntu.sh 17.12.0~ce-0~ubuntu heimdall yes yes
 ```
 
 #### What this command will do?
 ```
-# installer/run.sh <version> <user> <reboot> <locale>
+# installer/ubuntu.sh <version> <user> <reboot> <locale>
 ```
 
 - 1. The first parameter is the version of docker what will you install. Reproduce the same version of your staging ou test environment. To aplly any version use `edge`
