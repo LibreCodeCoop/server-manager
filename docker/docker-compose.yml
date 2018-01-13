@@ -2,7 +2,12 @@ version: '3'
 services:
   proxy:
     build: ./
+    networks:
+      - example_com
     ports:
       - 80:80
-    volumes:
-      - ./available:/etc/nginx/sites-available
+
+networks:
+  example_com:
+    external:
+      name: app_default
