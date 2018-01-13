@@ -2,3 +2,4 @@
 export PS1="\e[01;31m\u@SERVER\e[0m:[ \[\e[01;34m\]\W\[\e[0m\] ]$ "
 
 alias dc="docker-compose"
+alias la="ls -lah"

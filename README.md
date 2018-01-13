@@ -30,7 +30,7 @@ To proceed to update password of root do
 
 And then you can run the installer like the command above or before execute it read the next topic
 ```
-# installer/ubuntu.sh heimdall 17.12.0~ce-0~ubuntu 1.14.0 yes yes
+# installer/ubuntu.sh heimdall 17.12.0~ce-0~ubuntu 1.18.0 yes yes
 ```
 
 #### What this command will do?
