@@ -9,10 +9,16 @@ Access the server using ssh
 $ ssh root@<ip>
 ```
 
-### Make sure about your root password
+### Install and configure docker and a limited user
+Still with root, download this project
+```
+# git clone https://github.com/LyseonTech/server-start.git installer
+```
+
+#### Make sure about your root password
 After the instalation, root will not access ssh anymore. Configure a strong password to your root user. You can generate a password using
 ```
-# ./password.sh
+# installer/password.sh
 ```
 
 To proceed to update password of root do
@@ -21,12 +27,6 @@ To proceed to update password of root do
 ```
 
 > Don't forget of save the password used!
-
-### Install and configure docker and a limited user
-Still with root, download this project
-```
-# git clone https://github.com/LyseonTech/server-start.git installer
-```
 
 And then you can run the installer like the command above or before execute it read the next topic
 ```
