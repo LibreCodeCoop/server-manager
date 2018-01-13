@@ -15,6 +15,12 @@ fi
 if [ "$INSTALL_DOCKER_COMPOSE" = '' ]; then
   INSTALL_DOCKER_COMPOSE='edge'
 fi
+if [ "$INSTALL_REBOOT" = '' ]; then
+  INSTALL_REBOOT='yes'
+fi
+if [ "$INSTALL_LOCALE" = '' ]; then
+  INSTALL_LOCALE='yes'
+fi
 
 if [ "${INSTALL_LOCALE}" = 'yes' ]; then
   yellow "[locale] ~> Fix server locale"
