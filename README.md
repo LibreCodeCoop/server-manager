@@ -5,7 +5,8 @@ Access the server using ssh
 ```ssh root@<ip>```
 
 After the instalation, root will not access ssh anymore. Configure a strong password to your root user. You can generate a password using
-```wget -O password http://www.passwordrandom.com/query?command=password && \
+```
+wget -O password http://www.passwordrandom.com/query?command=password && \
 	password=$(cat password) && \
     echo "Password: $password"
 ```
