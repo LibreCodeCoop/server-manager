@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source $0/colors
+DIR=$(dirname "$0")
+source $DIR/colors
 
 
 yellow "[1/8] ~> Install dependencies to install docker"
@@ -15,16 +16,16 @@ yellow "[5/8] ~> Install docker-ce version ${1}"
 apt-get install -y docker-ce=$1
 apt-get autoremove -y
 yellow "[6/8] ~> Add user '${2}' to system"
-exists=$(grep -c ^${2}: /etc/passwd)
-if [ exists = '0' ]; then
+EXISTS=$(grep -c ^${2}: /etc/passwd)
+if [ "$EXISTS" = '0' ]; then
   adduser $2
   mkdir -p /home/$2/.ssh/
   cp ~/.ssh/authorized_keys /home/$2/.ssh/
   chmod 755 /home/$2/.ssh/authorized_keys
   chown -R $2:$2 /home/$2/.ssh/authorized_keys
 fi
-ssh=$(grep -c ^AllowUsers.*${2}: /etc/ssh/sshd_config)
-if [ ssh = '0' ]; then
+SSH=$(grep -c ^AllowUsers.*${2}: /etc/ssh/sshd_config)
+if [ "$EXISTS" = '0' ]; then
   printf '\n%s %s\n' 'AllowUsers' $2 >> /etc/ssh/sshd_config
   service ssh reload
 fi
@@ -40,8 +41,10 @@ if [ "${4}" = 'yes' ]; then
   dpkg-reconfigure locales
 fi
 
+INSTALLED=$(docker -v)
+blue "[done] ~> docker -v: $INSTALLED"
+blue '[reboot] ~> Reboot your system!!'
 if [ "${3}" = 'yes' ]; then
+  red 'Bye Bye!'
   reboot
-else
-  red '[done] ~> Reboot your system!!'
 fi
