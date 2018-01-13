@@ -12,8 +12,7 @@ $ ssh root@<ip>
 ### Make sure about your root password
 After the instalation, root will not access ssh anymore. Configure a strong password to your root user. You can generate a password using
 ```
-# wget -O password http://www.passwordrandom.com/query?command=password
-# echo "Password: $(cat password)"
+# ./password.sh
 ```
 
 To proceed to update password of root do
