@@ -5,7 +5,7 @@ Access the server using ssh
 ```ssh root@<ip>```
 
 Download this project
-```git clone git@github.com:LyseonTech/ubuntu-server-start.git installer```
+```git clone https://github.com/LyseonTech/ubuntu-server-start.git installer```
 
 Run the command above
 ```installer/run.sh 17.12.0~ce-0~ubuntu heimdall yes```
