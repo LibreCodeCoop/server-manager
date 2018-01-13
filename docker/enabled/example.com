@@ -4,7 +4,7 @@ server {
 
   location / {
     include /etc/nginx/includes/proxy.conf;
-    proxy_pass http://example_com;
+    proxy_pass http://example_com_app;
   }
 
   access_log off;
