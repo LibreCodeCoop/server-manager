@@ -2,10 +2,7 @@
 
 source $0/colors
 
-yellow "[start] ~> Fix server locale"
-apt-get install -y language-pack-pt
-locale-gen en_US en_US.UTF-8 pt_BR.UTF-8
-dpkg-reconfigure locales
+
 yellow "[1/8] ~> Install dependencies to install docker"
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 yellow "[2/8] ~> Add key of docker repository"
@@ -35,6 +32,13 @@ yellow "[7/8] ~> Add '${2}' to docker group"
 usermod -aG docker $2
 yellow '[8/8] ~> Enable docker on system'
 systemctl enable docker
+
+if [ "${4}" = 'yes' ]; then
+  yellow "[locale] ~> Fix server locale"
+  apt-get install -y language-pack-pt
+  locale-gen en_US en_US.UTF-8 pt_BR.UTF-8
+  dpkg-reconfigure locales
+fi
 
 if [ "${3}" = 'yes' ]; then
   reboot
