@@ -19,7 +19,11 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu ar
 yellow "[4/8] ~> Update system repositories sources"
 apt-get update
 yellow "[5/8] ~> Install docker-ce version ${1}"
-apt-get install -y docker-ce=$1
+if [ "$1" === 'edge' ]; then
+  apt-get install -y docker-ce
+else
+  apt-get install -y docker-ce=$1
+fi
 apt-get autoremove -y
 yellow "[6/8] ~> Add user '${2}' to system"
 EXISTS=$(grep -c ^${2}: /etc/passwd)
