@@ -6,13 +6,14 @@ Access the server using ssh
 
 After the instalation, root will not access ssh anymore. Configure a strong password to your root user. You can generate a password using
 ```
-wget -O password http://www.passwordrandom.com/query?command=password && \
-	password=$(cat password) && \
-    echo "Password: $password"
+wget -O password http://www.passwordrandom.com/query?command=password
+echo "Password: $(cat password)"
 ```
 
 To proceed to update password of root do
 ```passwd```
+
+> Don't forget of save the password used!
 
 Download this project
 ```git clone https://github.com/LyseonTech/ubuntu-server-start.git installer```
