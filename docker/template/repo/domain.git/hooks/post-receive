@@ -18,7 +18,7 @@ do
       main="${BASE}/sm/docker/docker-compose.yml"
       file="${BASE}/app/${DOMAIN}/docker-compose.yml"
 
-      if [ "$(docker ps -q -f name=example_com)" ]; then
+      if [ "$(docker ps -q -f name=<?php echo $network; ?>)" ]; then
         if [ -f "${APP}/.hooks/before.sh" ]; then
           docker exec <?php echo $network; ?> sh /var/www/app/.hooks/before.sh
         fi
@@ -28,7 +28,7 @@ do
 
       GIT_WORK_TREE="${APP}" git checkout -f
 
-      if [ "$(docker ps -q -f name=example_com)" ]; then
+      if [ -f "${file}" ]; then
         docker-compose -f ${file} up -d
         docker-compose -f ${main} up -d
         if [ -f "${APP}/.hooks/after.sh" ]; then
