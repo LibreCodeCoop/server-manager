@@ -37,7 +37,6 @@ rm -rf ${TEMP}
 ENABLED="${DOCKER}/enabled"
 mkdir -p ${ENABLED}
 php ${add} b=${BASE} d=${DOMAIN}
-php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
 php ${enable} b=${BASE} d=${DOMAIN}
 
 echo ''

@@ -206,5 +206,9 @@ function status($base, $domain, $status)
     }, sites($base));
     sites($base, $sites);
 
+    write("{$base}/sm/docker/enabled/{$domain}", "# disabled");
+    if ($status) {
+        template($base, $domain, 'enabled/domain', true);
+    }
     template($base, $domain, 'docker-compose.yml', true);
 }
