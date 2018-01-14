@@ -3,10 +3,11 @@ version: '3'
 networks:
 <?php
 foreach($sites as $site) {
+  $project = str_replace('_', '', $site->network);
+  $name = "{$project}_{$site->network}"
   echo "  {$site->network}_proxy:", PHP_EOL,
        "     external:", PHP_EOL,
-       "       name: app_{$site->network}", PHP_EOL;
-       /*"       name: p{$site->id}_{$site->network}", PHP_EOL;*/
+       "       name: {$name}", PHP_EOL;
 }
 ?>
 
