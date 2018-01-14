@@ -17,8 +17,8 @@ try {
         if (!$site->active) {
             continue;
         }
-        // shell_exec("cd {$base}/{$site->domain}/app && docker-compose --verbose down --remove-orphan");
-        shell_exec("docker-compose -f {$base}/{$site->domain}/app/{$file} down");
+        // shell_exec("cd {$base}/{$site->domain}/app && docker-compose --verbose down -p p{$site->id}_ --remove-orphan");
+        shell_exec("docker-compose -f {$base}/{$site->domain}/app/{$file} down --remove-orphan");
     }
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;

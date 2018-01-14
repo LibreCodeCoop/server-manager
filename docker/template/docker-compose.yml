@@ -5,7 +5,8 @@ networks:
 foreach($sites as $site) {
   echo "  {$site->network}_proxy:", PHP_EOL,
        "     external:", PHP_EOL,
-       "       name: p{$site->id}_{$site->network}", PHP_EOL;
+       "       name: app_{$site->network}", PHP_EOL;
+       /*"       name: p{$site->id}_{$site->network}", PHP_EOL;*/
 }
 ?>
 

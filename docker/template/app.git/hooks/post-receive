@@ -2,12 +2,26 @@
 
 BASE='<?php echo $base; ?>'
 DOMAIN='<?php echo $domain; ?>'
-file='docker-compose.yml'
+APP="${BASE}/${DOMAIN}/app"
 
-docker-compose -f ${BASE}/docker/${file} down
-docker-compose -f ${BASE}/${DOMAIN}/app/${file} down
+main="${BASE}/docker/docker-compose.yml"
+file="${BASE}/${DOMAIN}/app/docker-compose.yml"
 
-GIT_WORK_TREE="${BASE}/${DOMAIN}/app" git checkout -f
+docker-compose -f ${main} down
+if [ -f "${file}" ]; then
+  #docker-compose -f ${file} -p p<?php echo $id; ?>_ up down
+  docker-compose -f ${file} down
+fi
 
-docker-compose -f ${BASE}/${DOMAIN}/app${file} -p p<?php echo $id; ?>_ up -d
-docker-compose -f ${BASE}/docker/${file} up -d
+GIT_WORK_TREE="${APP}" git checkout -f
+
+if [ -f "${file}" ]; then
+  #docker-compose -f ${file} -p p<?php echo $id; ?>_ up -d
+  docker-compose -f ${file} up -d
+fi
+docker-compose -f ${main} up -d
+
+if [ -f "${APP}/.hooks/install.sh" ]; then
+  docker exec <?php echo $network; ?> sh /var/www/app/.hooks/install.sh
+fi
+

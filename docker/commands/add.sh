@@ -36,3 +36,5 @@ php ${replace} b=${BASE} d=${DOMAIN} t=temp/docker-compose.yml
 php ${replace} b=${BASE} d=${DOMAIN} t=temp/index.html
 git add --all && git commit -m "Install" && git push -u origin master
 rm -rf ${TEMP}
+
+echo "git clone ssh://${USER}@server/~/${DOMAIN}/app.git"

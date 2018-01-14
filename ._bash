@@ -3,4 +3,9 @@ export PS1="\e[01;33m\u@SERVER\e[0m:[ \[\e[01;34m\]\W\[\e[0m\] ]$ "
 
 alias dc="docker-compose"
 alias la="ls -lah"
-alias ss="~/docker/commands/server.sh"
+alias sm="~/docker/commands/server.sh"
+
+alias d-stop='docker stop $(docker ps -a -q)'
+alias d-rm='docker rm -f $(docker ps -a -q)'
+alias d-prune='docker ps --filter "status=exited" | grep "weeks ago" | awk "{print $1}" | xargs --no-run-if-empty docker rm'
+alias d-ls='docker ps -a --no-trunc'
