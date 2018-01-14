@@ -2,7 +2,7 @@
 
 BASE='<?php echo $base; ?>'
 DOMAIN='<?php echo $domain; ?>'
-APP="${BASE}/${DOMAIN}/app"
+APP="${BASE}/app/${DOMAIN}"
 
 main="${BASE}/sm/docker/docker-compose.yml"
 file="${BASE}/app/${DOMAIN}/docker-compose.yml"
