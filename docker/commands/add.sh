@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $0/colors
+
 # globals
 BASE=$1
 DOMAIN=$2
@@ -36,9 +38,9 @@ rm -rf ${TEMP}
 ENABLED="${DOCKER}/enabled"
 mkdir -p ${ENABLED}
 php ${add} b=${BASE} d=${DOMAIN}
-php ${enable} b=${BASE} d=${DOMAIN}
+#php ${enable} b=${BASE} d=${DOMAIN}
 php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
 
-echo '-------------------------------------------------------'
-echo "| git clone ssh://${USER}@server/~/repo/${DOMAIN}.git |"
-echo '-------------------------------------------------------'
+echo ''
+blue " ~> git clone ssh://${USER}@server/~/repo/${DOMAIN}.git"
+echo ''

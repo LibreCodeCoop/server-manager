@@ -133,6 +133,64 @@ function down($base, $domain = '')
 }
 
 /**
+ * @param $base
+ * @param $domain
+ * @param $template
+ * @return string
+ * @throws ErrorException
+ */
+function compile($base, $domain, $template)
+{
+    $sites = sites($base);
+
+    $actives = array_filter($sites, function ($site) {
+        return $site->active;
+    });
+    $current = array_reduce($sites, function ($accumulate, $item) use ($domain) {
+        if ($item->domain === $domain) {
+            return (array)$item;
+        }
+        return $accumulate;
+    }, []);
+    $variables = array_merge($current, [
+        'network' => network($domain),
+        'sites' => $actives,
+    ]);
+    extract($variables);
+
+    $filename = "{$base}/sm/docker/template/{$template}";
+    if (file_exists($filename)) {
+        ob_start();
+        /** @noinspection PhpIncludeInspection */
+        include $filename;
+        $generated = ob_get_contents();
+        if ($generated) {
+            ob_end_clean();
+        }
+        return $generated;
+    }
+    throw new ErrorException("Can't generate {$filename}");
+}
+
+/**
+ * @param string $base
+ * @param string $domain
+ * @param string $template
+ * @param string $settings
+ * @throws ErrorException
+ */
+function template($base, $domain, $template, $settings)
+{
+    $content = compile($base, $domain, $template);
+    $name = str_replace(['domain'], [$domain], $template);
+    $filename = "{$base}/{$name}";
+    if ($settings) {
+        $filename = "{$base}/sm/docker/{$name}";
+    }
+    write($filename, $content);
+}
+
+/**
  * @param string $base
  * @param string $domain
  * @param boolean $status
@@ -147,4 +205,6 @@ function status($base, $domain, $status)
         return $site;
     }, sites($base));
     sites($base, $sites);
+
+    template($base, $domain, 'docker-compose.yml', true);
 }
