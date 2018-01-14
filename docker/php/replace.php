@@ -14,7 +14,7 @@ try {
     $name = str_replace(['domain'], [$domain], $template);
     $filename = "{$base}/{$domain}/{$name}";
     if ($settings) {
-        $filename = "{$base}/docker/{$name}";
+        $filename = "{$base}/sm/docker/{$name}";
     }
     write($filename, $content);
 } catch (ErrorException $e) {
@@ -47,7 +47,7 @@ function generate($base, $domain, $template)
     ]);
     extract($variables);
 
-    $filename = "{$base}/docker/template/{$template}";
+    $filename = "{$base}/sm/docker/template/{$template}";
     if (file_exists($filename)) {
         ob_start();
         /** @noinspection PhpIncludeInspection */

@@ -8,7 +8,7 @@
  */
 function sites($base, $sites = null)
 {
-    $filename = "{$base}/docker/sites.json";
+    $filename = "{$base}/sm/docker/sites.json";
     if (!is_null($sites)) {
         return write($filename, $sites);
     }

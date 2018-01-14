@@ -3,7 +3,7 @@
 # globals
 BASE=$1
 DOMAIN=$2
-DOCKER="${BASE}/docker"
+DOCKER="${BASE}/sm/docker"
 replace="${DOCKER}/php/replace.php"
 add="${DOCKER}/php/add.php"
 
@@ -15,11 +15,11 @@ php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
 php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
 
 # create dir to receive the app what will be write by git hook
-SOURCE="${BASE}/${DOMAIN}/app"
-mkdir -p ${SOURCE}
+APP="${BASE}/app/${DOMAIN}"
+mkdir -p ${APP}
 
 # create and configure the bare repo
-REPO="${BASE}/${DOMAIN}/app.git"
+REPO="${BASE}/repo/${DOMAIN}.git"
 mkdir -p ${REPO}
 cd ${REPO}
 git init --bare
@@ -37,4 +37,4 @@ php ${replace} b=${BASE} d=${DOMAIN} t=temp/index.html
 git add --all && git commit -m "Install" && git push -u origin master
 rm -rf ${TEMP}
 
-echo "git clone ssh://${USER}@server/~/${DOMAIN}/app.git"
+echo "git clone ssh://${USER}@server/~/repo/${DOMAIN}.git"

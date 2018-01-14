@@ -15,11 +15,11 @@ try {
             continue;
         }
         // shell_exec("cd {$base}/{$site->domain}/app && docker-compose -p p{$site->id}_ --verbose up -d");
-        shell_exec("docker-compose -f {$base}/{$site->domain}/app/{$file} up -d");
+        shell_exec("docker-compose -f {$base}/app/{$site->domain}/{$file} up -d");
     }
 
-    // shell_exec("cd {$base}/docker/ && docker-compose --verbose up -d");
-    shell_exec("docker-compose -f {$base}/docker/{$file} up -d");
+    // shell_exec("cd {$base}/sm/docker/ && docker-compose --verbose up -d");
+    shell_exec("docker-compose -f {$base}/sm/docker/{$file} up -d");
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;
 }

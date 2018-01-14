@@ -2,6 +2,6 @@
 
 BASE=$1
 DOMAIN=$2
-down="${BASE}/docker/php/down.php"
+down="${BASE}/sm/docker/php/down.php"
 
 php ${down} b=${BASE} d=${DOMAIN}

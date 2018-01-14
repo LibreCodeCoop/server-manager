@@ -12,13 +12,13 @@ $ ssh root@<ip>
 ### Install and configure docker and a limited user
 Still with root, download this project
 ```
-# git clone https://github.com/LyseonTech/server-start.git installer
+# git clone https://github.com/LyseonTech/server-start.git sm
 ```
 
 #### Make sure about your root password
 After the instalation, root will not access ssh anymore. Configure a strong password to your root user. You can generate a password using
 ```
-# installer/password.sh
+# sm/password.sh
 ```
 
 To proceed to update password of root do
@@ -30,12 +30,12 @@ To proceed to update password of root do
 
 And then you can run the installer like the command above or before execute it read the next topic
 ```
-# installer/ubuntu.sh heimdall 17.12.0~ce-0~ubuntu 1.18.0 yes yes
+# sm/ubuntu.sh heimdall 17.12.0~ce-0~ubuntu 1.18.0 yes yes
 ```
 
 #### What this command will do?
 ```
-# installer/ubuntu.sh <user> <version> <compose> <reboot> <locale>
+# sm/ubuntu.sh <user> <version> <compose> <reboot> <locale>
 ```
 
 

@@ -2,7 +2,7 @@
 
 BASE=$1
 DOMAIN=$2
-DOCKER="${BASE}/docker"
+DOCKER="${BASE}/sm/docker"
 
 replace="${DOCKER}/php/replace.php"
 php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
