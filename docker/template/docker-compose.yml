@@ -1,6 +1,9 @@
 version: '3'
 
 networks:
+  fake_proxy:
+     driver: bridge
+
 <?php
 foreach($sites as $site) {
   $project = str_replace('_', '', $site->network);
@@ -15,6 +18,7 @@ services:
   proxy:
     build: ./
     networks:
+      - fake_proxy
 <?php
 foreach($sites as $site) {
   echo "      - {$site->network}_proxy", PHP_EOL;
