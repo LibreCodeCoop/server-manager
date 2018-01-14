@@ -64,7 +64,7 @@ if [ "$EXISTS" = '0' ]; then
   cp ~/.ssh/authorized_keys /home/${INSTALL_USER}/.ssh/
   cp ${DIR}/._bash /home/${INSTALL_USER}/._bash
   printf '\n%s\n' 'source ._bash' >> /home/${INSTALL_USER}/.bashrc
-  mv -R ${DIR} /home/${INSTALL_USER}/sm
+  mv ${DIR} /home/${INSTALL_USER}/sm
   chmod 755 /home/${INSTALL_USER}/.ssh/authorized_keys
   chown -R ${INSTALL_USER}:${INSTALL_USER} /home/${INSTALL_USER}
 fi
