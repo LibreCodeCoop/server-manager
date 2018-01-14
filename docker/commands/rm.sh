@@ -11,4 +11,4 @@ php ${rm} b=${BASE} d=${DOMAIN}
 php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
 rm -f "${BASE}/sm/docker/enabled/${DOMAIN}"
 rm -rf "${BASE}/app/${DOMAIN}"
-rm -rf "${BASE}/repo/${DOMAIN}"
+rm -rf "${BASE}/repo/${DOMAIN}.git"
