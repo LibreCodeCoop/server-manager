@@ -1,5 +1,7 @@
 #!/bin/bash
 
-file="docker-compose.yml"
-docker-compose -f "${1}/${2}/app/${file}" up -d
-docker-compose -f "${1}/docker/${file}" up -d
+BASE=$1
+DOMAIN=$2
+up="${BASE}/docker/php/up.php"
+
+php ${up} b=${BASE} d=${DOMAIN}

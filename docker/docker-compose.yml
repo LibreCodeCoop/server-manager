@@ -1,15 +1,8 @@
 version: '3'
 
-networks:
-  example_com_proxy:
-    external:
-      name: app_example_com
-
 services:
   proxy:
     build: ./
-    networks:
-      - example_com_proxy
     ports:
       - 80:80
     volumes:

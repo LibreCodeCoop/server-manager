@@ -3,9 +3,9 @@ version: '3'
 networks:
 <?php
 foreach($networks as $network) {
-  echo "  {$network}_proxy:", PHP_EOL
-       "     external:", PHP_EOL
-       "       name: app_{$network}";
+  echo "  {$network}_proxy:", PHP_EOL,
+       "     external:", PHP_EOL,
+       "       name: app_{$network}", PHP_EOL;
 }
 ?>
 

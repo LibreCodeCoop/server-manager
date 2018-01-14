@@ -3,13 +3,7 @@
 require_once __DIR__ . '/functions.php';
 
 try {
-    $parameters = argv($argv);
-    foreach (['b', 'd', 't'] as $item) {
-        if (!isset($parameters[$item])) {
-            echo "The parameter `-{$item}` is required", PHP_EOL;
-            exit;
-        }
-    }
+    $parameters = argv($argv, ['b', 'd', 't']);
 
     $base = $parameters['b'];
     $domain = $parameters['d'];
@@ -36,13 +30,22 @@ try {
  */
 function generate($base, $domain, $template)
 {
-    $domains = json_decode(read("{$base}/docker/enabled.json"));
+    $installs = json_decode(read("{$base}/docker/installs.json", '[]'));
+
+    $actives = array_filter($installs, function ($site) {
+       return $site->active;
+    });
+    $domains = array_map(function ($site) {
+        return $site->domain;
+    }, $actives);
+    $networks = array_map(function ($site) {
+        return $site->network;
+    }, $actives);
+
     extract([
-        'network' => str_replace('.', '_', $domain),
+        'network' => network($domain),
         'domains' => $domains,
-        'networks' => array_map(function ($domain) {
-            return str_replace('.', '_', $domain);
-        }, $domains),
+        'networks' => $networks,
     ]);
     $filename = "{$base}/docker/template/{$template}";
     if (file_exists($filename)) {

@@ -5,7 +5,7 @@ networks:
     driver: bridge
 
 services:
-  app:
+<?php echo "  {$network}:"; ?> # don't change
     image: nginx:1.12
     container_name: <?php echo $network; ?> # don't change
     networks:

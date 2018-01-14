@@ -5,18 +5,18 @@ BASE=$1
 DOMAIN=$2
 DOCKER="${BASE}/docker"
 replace="${DOCKER}/php/replace.php"
-enabled="${DOCKER}/php/enabled.php"
+install="${DOCKER}/php/install.php"
 
 # resolve the main settings
 ENABLED="${DOCKER}/enabled"
 mkdir -p ${ENABLED}
-touch "${ENABLED}/${DOMAIN}"
+php ${install} b=${BASE} d=${DOMAIN}
+php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
+php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
 
-# create dir to receive the app
+# create dir to receive the app what will be write by git hook
 SOURCE="${BASE}/${DOMAIN}/app"
 mkdir -p ${SOURCE}
-php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
-php ${enabled} b=${BASE} d=${DOMAIN} o=add
 
 # create and configure the bare repo
 REPO="${BASE}/${DOMAIN}/app.git"
