@@ -23,7 +23,7 @@ REPO="${BASE}/repo/${DOMAIN}.git"
 mkdir -p ${REPO}
 cd ${REPO}
 git init --bare
-php ${replace} b=${BASE} d=${DOMAIN} t=app.git/hooks/post-receive
+php ${replace} b=${BASE} d=${DOMAIN} t=app/domain.git/hooks/post-receive
 chmod +x "hooks/post-receive"
 
 # create a temp repo to push first changes

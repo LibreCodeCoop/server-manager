@@ -12,7 +12,7 @@ try {
 
     $content = generate($base, $domain, $template);
     $name = str_replace(['domain'], [$domain], $template);
-    $filename = "{$base}/{$domain}/{$name}";
+    $filename = "{$base}/{$name}";
     if ($settings) {
         $filename = "{$base}/sm/docker/{$name}";
     }
