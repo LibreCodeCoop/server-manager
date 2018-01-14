@@ -40,7 +40,7 @@ function generate($base, $domain, $template)
             return (array)$item;
         }
         return $accumulate;
-    }, null);
+    }, []);
     $variables = array_merge($current, [
         'network' => network($domain),
         'sites' => $actives,
