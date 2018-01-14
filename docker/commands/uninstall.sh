@@ -9,5 +9,5 @@ replace="${DOCKER}/php/replace.php"
 
 php ${uninstall} b=${BASE} d=${DOMAIN}
 php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
-rm -f "${BASE}/docker/${DOMAIN}"
+rm -f "${BASE}/docker/enabled/${DOMAIN}"
 rm -rf "${BASE}/${DOMAIN}"

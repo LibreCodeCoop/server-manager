@@ -10,6 +10,7 @@ try {
 
     $sites = sites($base);
     $sites[] = [
+        'id' => uniqid(),
         'domain' => $domain,
         'network' => network($domain),
         'active' => true,

@@ -6,10 +6,11 @@ networks:
 
 services:
 <?php echo "  {$network}:"; ?> # don't change
-    image: nginx:1.12
     container_name: <?php echo $network; ?> # don't change
     networks:
       - <?php echo $network; ?> # don't change
+    image: nginx:1.12
+    restart: always
     volumes:
       - .:/usr/share/nginx/html/
     expose:

@@ -13,10 +13,12 @@ try {
         if (!$site->active) {
             continue;
         }
-        shell_exec("docker-compose -f {$base}/{$site->domain}/app/docker-compose.yml up -d --remove-orphan");
+        // shell_exec("cd {$base}/{$site->domain}/app && docker-compose --verbose up -d");
+        shell_exec("cd {$base}/{$site->domain}/app && docker-compose -p p{$site->id}_ up -d");
     }
 
-    shell_exec("docker-compose -f {$base}/docker/docker-compose.yml up -d --remove-orphan");
+    // shell_exec("cd {$base}/docker/ && docker-compose --verbose up -d");
+    shell_exec("cd {$base}/docker/ && docker-compose up -d");
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;
 }

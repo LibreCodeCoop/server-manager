@@ -2,10 +2,10 @@ version: '3'
 
 networks:
 <?php
-foreach($networks as $network) {
-  echo "  {$network}_proxy:", PHP_EOL,
+foreach($sites as $site) {
+  echo "  {$site->network}_proxy:", PHP_EOL,
        "     external:", PHP_EOL,
-       "       name: app_{$network}", PHP_EOL;
+       "       name: p{$site->id}_{$site->network}", PHP_EOL;
 }
 ?>
 
@@ -14,8 +14,8 @@ services:
     build: ./
     networks:
 <?php
-foreach($networks as $network) {
-  echo "      - {$network}_proxy", PHP_EOL;
+foreach($sites as $site) {
+  echo "      - {$site->network}_proxy", PHP_EOL;
 }
 ?>
     ports:

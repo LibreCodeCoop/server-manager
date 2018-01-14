@@ -10,9 +10,9 @@ function sites($base, $sites = null)
 {
     $filename = "{$base}/docker/sites.json";
     if (!is_null($sites)) {
-        return write($filename, (array)$sites);
+        return write($filename, $sites);
     }
-    $sites = (array)json_decode(read($filename, '[]'));
+    $sites = json_decode(read($filename, '[]'));
     if (!is_array($sites)) {
         $sites = [];
     }

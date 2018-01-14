@@ -35,17 +35,10 @@ function generate($base, $domain, $template)
     $actives = array_filter($sites, function ($site) {
        return $site->active;
     });
-    $domains = array_map(function ($site) {
-        return $site->domain;
-    }, $actives);
-    $networks = array_map(function ($site) {
-        return $site->network;
-    }, $actives);
 
     extract([
         'network' => network($domain),
-        'domains' => $domains,
-        'networks' => $networks,
+        'sites' => $actives,
     ]);
     $filename = "{$base}/docker/template/{$template}";
     if (file_exists($filename)) {
