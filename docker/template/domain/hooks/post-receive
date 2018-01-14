@@ -5,7 +5,7 @@ DOMAIN='<?php echo $domain; ?>'
 APP="${BASE}/${DOMAIN}/app"
 
 main="${BASE}/sm/docker/docker-compose.yml"
-file="${BASE}/${DOMAIN}/app/docker-compose.yml"
+file="${BASE}/app/${DOMAIN}/docker-compose.yml"
 
 docker-compose -f ${main} down
 if [ -f "${file}" ]; then
