@@ -206,8 +206,7 @@ function status($base, $domain, $status)
     }, sites($base));
     sites($base, $sites);
 
-    var_dump(["{$base}/sm/docker/enabled/{$domain}"], $status);
-    write("{$base}/sm/docker/enabled/{$domain}", "# disabled");
+    write("{$base}/sm/docker/enabled/{$domain}", "# disabled\n");
     if ($status) {
         template($base, $domain, 'enabled/domain', true);
     }
