@@ -1,31 +1,40 @@
 #!/bin/bash
 
-BASE='<?php echo $base; ?>'
-DOMAIN='<?php echo $domain; ?>'
-APP="${BASE}/app/${DOMAIN}"
+while read oldrev newrev refname
+do
+    branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+    if [ "master" == "$branch" ]; then
 
-if [ -f "${APP}/.new" ]; then
-  rm -f "${APP}/.new"
-  GIT_WORK_TREE="${APP}" git checkout -f
-  exit
-fi
+      BASE='<?php echo $base; ?>'
+      DOMAIN='<?php echo $domain; ?>'
+      APP="${BASE}/app/${DOMAIN}"
 
-main="${BASE}/sm/docker/docker-compose.yml"
-file="${BASE}/app/${DOMAIN}/docker-compose.yml"
+      if [ -f "${APP}/.new" ]; then
+        rm -f "${APP}/.new"
+        GIT_WORK_TREE="${APP}" git checkout -f
+        exit
+      fi
 
-if [ -f "${file}" ]; then
-  docker-compose -f ${main} down
-  docker-compose -f ${file} down
-fi
+      main="${BASE}/sm/docker/docker-compose.yml"
+      file="${BASE}/app/${DOMAIN}/docker-compose.yml"
 
-GIT_WORK_TREE="${APP}" git checkout -f
+      if [ "$(docker ps -q -f name=example_com)" ]; then
+        if [ -f "${APP}/.hooks/before.sh" ]; then
+          docker exec <?php echo $network; ?> sh /var/www/app/.hooks/before.sh
+        fi
+        docker-compose -f ${main} down
+        docker-compose -f ${file} down
+      fi
 
-if [ -f "${file}" ]; then
-  docker-compose -f ${file} up -d
-  docker-compose -f ${main} up -d
-fi
+      GIT_WORK_TREE="${APP}" git checkout -f
 
-if [ -f "${APP}/.hooks/install.sh" ]; then
-  docker exec <?php echo $network; ?> sh /var/www/app/.hooks/install.sh
-fi
+      if [ "$(docker ps -q -f name=example_com)" ]; then
+        docker-compose -f ${file} up -d
+        docker-compose -f ${main} up -d
+        if [ -f "${APP}/.hooks/after.sh" ]; then
+          docker exec <?php echo $network; ?> sh /var/www/app/.hooks/after.sh
+        fi
+      fi
 
+    fi
+done

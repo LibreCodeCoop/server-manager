@@ -65,3 +65,23 @@ To manage your apps you have the commands:
 - `sm enable <domain>`: Enables a specific domain
 
 - `sm disable <domain>`: Disable and stop a specific domain
+
+### Deploying
+
+When you add one app is generated a git repo with a
+[docker-compose.yml](https://github.com/LyseonTech/server-manager/blob/master/docker/template/temp/docker-compose.yml)
+what needs to be used keeping the lines tagged with `# don't change`.
+This repo has a post-receive file what will publish your changes when receive
+a push on branch master.
+
+In the deploy process the docker-compose.yml goes down, then, after deploy,
+it goes up again. You changes on infra will be applied after finish checkout!
+
+You also can create a volume to map `sh` files to be executed as hooks.
+```YAML
+    ...
+    volumes:
+      - ./.hooks/before.sh:/var/www/app/.hooks/before.sh
+      - ./.hooks/after.sh:/var/www/app/.hooks/after.sh
+    ...
+```
