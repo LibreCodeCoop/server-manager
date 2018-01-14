@@ -8,14 +8,14 @@ try {
     $base = $parameters['b'];
     $domain = isset($parameters['d']) ? $parameters['d'] : '';
 
-    shell_exec("docker-compose -f {$base}/docker/docker-compose.yml down");
+    shell_exec("docker-compose -f {$base}/docker/docker-compose.yml down --remove-orphan");
 
     $sites = sites($base);
     foreach ($sites as $site) {
         if (!$site->active) {
             continue;
         }
-        shell_exec("docker-compose -f {$base}/{$site->domain}/app/docker-compose.yml down");
+        shell_exec("docker-compose -f {$base}/{$site->domain}/app/docker-compose.yml down --remove-orphan");
     }
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;

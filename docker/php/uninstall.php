@@ -11,7 +11,7 @@ try {
     $sites = array_filter(sites($base), function ($site) use ($domain) {
         return $site->domain !== $domain;
     });
-    write($filename, json_encode($sites));
+    sites($base, $sites);
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;
 }

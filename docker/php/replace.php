@@ -30,9 +30,9 @@ try {
  */
 function generate($base, $domain, $template)
 {
-    $installs = json_decode(read("{$base}/docker/installs.json", '[]'));
+    $sites = sites($base);
 
-    $actives = array_filter($installs, function ($site) {
+    $actives = array_filter($sites, function ($site) {
        return $site->active;
     });
     $domains = array_map(function ($site) {

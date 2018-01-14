@@ -11,8 +11,8 @@ install="${DOCKER}/php/install.php"
 ENABLED="${DOCKER}/enabled"
 mkdir -p ${ENABLED}
 php ${install} b=${BASE} d=${DOMAIN}
-php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
 php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
+php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
 
 # create dir to receive the app what will be write by git hook
 SOURCE="${BASE}/${DOMAIN}/app"

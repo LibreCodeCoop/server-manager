@@ -14,7 +14,7 @@ try {
         'network' => network($domain),
         'active' => true,
     ];
-    write($filename, json_encode($sites));
+    sites($base, $sites);
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;
 }

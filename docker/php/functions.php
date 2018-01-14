@@ -1,14 +1,18 @@
 <?php
 
 /**
- * @param $base
+ * @param string $base
+ * @param array $sites
  * @return array|mixed
  * @throws ErrorException
  */
-function sites($base)
+function sites($base, $sites = null)
 {
     $filename = "{$base}/docker/sites.json";
-    $sites = json_decode(read($filename, '[]'));
+    if (!is_null($sites)) {
+        return write($filename, (array)$sites);
+    }
+    $sites = (array)json_decode(read($filename, '[]'));
     if (!is_array($sites)) {
         $sites = [];
     }
@@ -17,7 +21,7 @@ function sites($base)
 
 /**
  * @param string $filename
- * @param string $content
+ * @param mixed $content
  * @return bool|int
  * @throws ErrorException
  */
