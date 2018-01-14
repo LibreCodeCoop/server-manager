@@ -1,0 +1,24 @@
+version: '3'
+
+networks:
+<?php
+foreach($networks as $network) {
+  echo "  {$network}_proxy:", PHP_EOL
+       "     external:", PHP_EOL
+       "       name: app_{$network}";
+}
+?>
+
+services:
+  proxy:
+    build: ./
+    networks:
+<?php
+foreach($networks as $network) {
+  echo "      - {$network}_proxy", PHP_EOL;
+}
+?>
+    ports:
+      - 80:80
+    volumes:
+      - ./enabled:/etc/nginx/sites-enabled

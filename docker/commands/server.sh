@@ -2,8 +2,8 @@
 
 DIR="$(dirname $0)"
 BASE="$(readlink -f ~)"
-ACTION=$1
-DOMAIN=$2
+DOMAIN=$1
+ACTION=$2
 
 WORKDIR=${BASE}/${DOMAIN}/app
 

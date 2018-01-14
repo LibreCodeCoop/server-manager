@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker-compose down --workdir="${1}/${2}/app"
+file="docker-compose.yml"
+docker-compose -f "${1}/docker/${file}" down
+docker-compose -f "${1}/${2}/app/${file}" down

@@ -36,7 +36,14 @@ try {
  */
 function generate($base, $domain, $template)
 {
-    extract(['network' => str_replace('.', '_', $domain)]);
+    $domains = json_decode(read("{$base}/docker/enabled.json"));
+    extract([
+        'network' => str_replace('.', '_', $domain),
+        'domains' => $domains,
+        'networks' => array_map(function ($domain) {
+            return str_replace('.', '_', $domain);
+        }, $domains),
+    ]);
     $filename = "{$base}/docker/template/{$template}";
     if (file_exists($filename)) {
         ob_start();

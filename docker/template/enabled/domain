@@ -1,6 +1,6 @@
 server {
   listen 80;
-  server_name <?php echo $domain; ?>
+  server_name <?php echo $domain; ?>;
 
   location / {
     include /etc/nginx/includes/proxy.conf;
