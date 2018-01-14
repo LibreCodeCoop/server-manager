@@ -7,9 +7,10 @@ try {
 
     $base = $parameters['b'];
     $domain = isset($parameters['d']) ? $parameters['d'] : '';
+    $file = 'docker-compose.yml';
 
     // shell_exec("cd {$base}/docker && docker-compose --verbose down");
-    shell_exec("cd {$base}/docker && docker-compose down");
+    shell_exec("docker-compose -f {$base}/docker/{$file} down");
 
     $sites = sites($base);
     foreach ($sites as $site) {
@@ -17,7 +18,7 @@ try {
             continue;
         }
         // shell_exec("cd {$base}/{$site->domain}/app && docker-compose --verbose down --remove-orphan");
-        shell_exec("cd {$base}/{$site->domain}/app && docker-compose down");
+        shell_exec("docker-compose -f {$base}/{$site->domain}/app/{$file} down");
     }
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;

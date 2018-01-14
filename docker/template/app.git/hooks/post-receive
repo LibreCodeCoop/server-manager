@@ -1,12 +1,13 @@
 #!/bin/bash
 
-HOOKS="$(dirname `readlink -f $0`)"
-ROOT="$(dirname ${HOOKS})"
-SOURCE="$(dirname ${ROOT})/app"
-REPO="$(dirname ${ROOT})/app.git"
+BASE='<?php echo $base; ?>'
+DOMAIN='<?php echo $domain; ?>'
+file='docker-compose.yml'
 
-docker-compose down --workdir="${SOURCE}"
+docker-compose -f ${BASE}/docker/${file} down
+docker-compose -f ${BASE}/${DOMAIN}/app/${file} down
 
-GIT_WORK_TREE="${SOURCE}" git checkout -f
+GIT_WORK_TREE="${BASE}/${DOMAIN}/app" git checkout -f
 
-docker-compose up -d --workdir="${SOURCE}"
+docker-compose -f ${BASE}/${DOMAIN}/app${file} -p p<?php echo $id; ?>_ up -d
+docker-compose -f ${BASE}/docker/${file} up -d
