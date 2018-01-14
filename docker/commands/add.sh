@@ -30,6 +30,7 @@ git config user.email "root@localhost" && git config user.name "Root"
 php ${replace} b=${BASE} d=${DOMAIN} t=temp/docker-compose.yml
 php ${replace} b=${BASE} d=${DOMAIN} t=temp/index.html
 git add --all && git commit -m "Install" && git push -u origin master
+cd ${APP}
 rm -rf ${TEMP}
 
 # resolve the main settings
