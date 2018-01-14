@@ -104,7 +104,11 @@ function up($base, $domain = '')
 {
     $file = COMPOSER_FILE;
     if ($domain) {
-        return shell_exec("docker-compose -f {$base}/app/{$domain}/{$file} up -d");
+        $container = "{$base}/app/{$domain}/{$file}";
+        if (file_exists($container)) {
+            return shell_exec("docker-compose -f {$container} up -d");
+        }
+        return '';
     }
     return shell_exec("docker-compose -f {$base}/sm/docker/{$file} up -d");
 }
@@ -119,7 +123,11 @@ function down($base, $domain = '')
     $file = COMPOSER_FILE;
     //  --remove-orphan
     if ($domain) {
-        return shell_exec("docker-compose -f {$base}/app/{$domain}/{$file} down");
+        $container = "{$base}/app/{$domain}/{$file}";
+        if (file_exists($container)) {
+            return shell_exec("docker-compose -f {$container} down");
+        }
+        return '';
     }
     return shell_exec("docker-compose -f {$base}/sm/docker/{$file} down");
 }
