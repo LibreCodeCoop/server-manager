@@ -38,7 +38,6 @@ And then you can run the installer like the command above or before execute it r
 # sm/ubuntu.sh <user> <version> <compose> <reboot> <locale>
 ```
 
-
 Parameters spec:
 
 1. `<user>` The name of user what will be used to access the server. Can be `sysadmin` or whatever you want. The user what you use to install will be used to next access and root will not access using ssh key anymore;
@@ -51,3 +50,18 @@ Parameters spec:
 
 5. `<locale>` [optional] Fix locales of Ubuntu Server. If don't informed will be yes.
 
+### Managing server
+
+To manage your apps you have the commands:
+
+- `sm add <domain>`: Add one domain to the list of domains
+
+- `sm rm <domain>`: Remove the domain of list of domains
+
+- `sm up`: Make all sites available
+
+- `sm down`: Stop all containers
+
+- `sm enable <domain>`: Enables a specific domain
+
+- `sm disable <domain>`: Disable and stop a specific domain

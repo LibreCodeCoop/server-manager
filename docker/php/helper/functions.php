@@ -1,5 +1,7 @@
 <?php
 
+define('COMPOSER_FILE', 'docker-compose.yml');
+
 /**
  * @param string $base
  * @param array $sites
@@ -90,4 +92,51 @@ function argv($argv, $requires = [])
         }
     }
     return $parameters;
+}
+
+/**
+ * @param string $base
+ * @param string $domain
+ * @return string
+ * @SuppressWarnings("ShortMethodName")
+ */
+function up($base, $domain = '')
+{
+    $file = COMPOSER_FILE;
+    if ($domain) {
+        return shell_exec("docker-compose -f {$base}/app/{$domain}/{$file} up -d");
+    }
+    return shell_exec("docker-compose -f {$base}/sm/docker/{$file} up -d");
+}
+
+/**
+ * @param string $base
+ * @param string $domain
+ * @return string
+ */
+function down($base, $domain = '')
+{
+    $file = COMPOSER_FILE;
+    //  --remove-orphan
+    if ($domain) {
+        return shell_exec("docker-compose -f {$base}/app/{$domain}/{$file} down");
+    }
+    return shell_exec("docker-compose -f {$base}/sm/docker/{$file} down");
+}
+
+/**
+ * @param string $base
+ * @param string $domain
+ * @param boolean $status
+ * @throws ErrorException
+ */
+function status($base, $domain, $status)
+{
+    $sites = array_map(function ($site) use ($domain, $status) {
+        if ($site->domain === $domain) {
+            $site->active = $status;
+        }
+        return $site;
+    }, sites($base));
+    sites($base, $sites);
 }

@@ -1,25 +1,20 @@
 <?php
 
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/helper/functions.php';
 
 try {
     $parameters = argv($argv, ['b']);
 
     $base = $parameters['b'];
-    $domain = isset($parameters['d']) ? $parameters['d'] : '';
-    $file = 'docker-compose.yml';
 
     $sites = sites($base);
     foreach ($sites as $site) {
         if (!$site->active) {
             continue;
         }
-        // shell_exec("cd {$base}/{$site->domain}/app && docker-compose -p p{$site->id}_ --verbose up -d");
-        shell_exec("docker-compose -f {$base}/app/{$site->domain}/{$file} up -d");
+        up($base, $site->domain);
     }
-
-    // shell_exec("cd {$base}/sm/docker/ && docker-compose --verbose up -d");
-    shell_exec("docker-compose -f {$base}/sm/docker/{$file} up -d");
+    up($base);
 } catch (ErrorException $e) {
     echo '"', $e->getMessage(), '"', ' on ', $e->getFile(), ' in ', $e->getLine(), PHP_EOL;
 }

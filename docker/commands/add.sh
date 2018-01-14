@@ -4,15 +4,16 @@
 BASE=$1
 DOMAIN=$2
 DOCKER="${BASE}/sm/docker"
-replace="${DOCKER}/php/replace.php"
+replace="${DOCKER}/php/helper/replace.php"
 add="${DOCKER}/php/add.php"
+enable="${DOCKER}/php/enable.php"
 
 # resolve the main settings
 ENABLED="${DOCKER}/enabled"
 mkdir -p ${ENABLED}
 php ${add} b=${BASE} d=${DOMAIN}
+php ${enable} b=${BASE} d=${DOMAIN}
 php ${replace} b=${BASE} d=${DOMAIN} t=enabled/domain s=true
-php ${replace} b=${BASE} d=${DOMAIN} t=docker-compose.yml s=true
 
 # create dir to receive the app what will be write by git hook
 APP="${BASE}/app/${DOMAIN}"
@@ -37,4 +38,6 @@ php ${replace} b=${BASE} d=${DOMAIN} t=temp/index.html
 git add --all && git commit -m "Install" && git push -u origin master
 rm -rf ${TEMP}
 
+echo '---------------------------------------------------'
 echo "git clone ssh://${USER}@server/~/repo/${DOMAIN}.git"
+echo '---------------------------------------------------'
